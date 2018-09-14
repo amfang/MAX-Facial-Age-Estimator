@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: max-facial-age-estimator
+spec:
+  selector:
+    app: max-facial-age-estimator
+  ports:
+  - port: 5000
+  type: NodePort
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: max-facial-age-estimator
+  labels:
+    app: max-facial-age-estimator
+spec:
+  selector:
+    matchLabels:
+      app: max-facial-age-estimator
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: max-facial-age-estimator
+    spec:
+      containers:
+      - name: max-facial-age-estimator
+        image: codait/max-facial-age-estimator:latest
+        ports:
+        - containerPort: 5000

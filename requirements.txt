@@ -1,0 +1,10 @@
+tensorflow==1.1.0
+flask-restplus
+pillow
+scipy
+keras==2.2.2
+moviepy
+opencv-python
+pygame
+imageio
+mtcnn
