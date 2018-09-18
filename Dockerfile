@@ -8,15 +8,10 @@ RUN wget -nv --show-progress --progress=bar:force:noscroll ${model_bucket}/${mod
 RUN tar -x -C assets/ -f assets/${model_file} -v && rm assets/${model_file}
 
 #opencv
-RUN apt-get update && apt-get install libgtk2.0 -y
+RUN apt-get update && apt-get install libgtk2.0 -y && rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt /workspace
 RUN pip install -r requirements.txt
-
-# Python package versions
-ARG python_version=3.6.6
-ARG tf_version=1.1.0
-ARG keras_version=2.2.2
 
 COPY . /workspace
 
