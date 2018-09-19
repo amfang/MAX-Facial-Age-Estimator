@@ -30,9 +30,10 @@ def read_still_image(still_img):
 
 class ModelWrapper(object):
     """Model wrapper for SavedModel format"""
-    def __init__(self, path=DEFAULT_MODEL_PATH):
+    def __init__(self, path=DEFAULT_MODEL_PATH, detector_path=DEFAULT_DETECTOR_PATH):
         logger.info('Loading model from: {}...'.format(path))
-
+        logger.info('Loading face detector from: {}...'.format(path))
+        
         # for face detection
         self.detector = MTCNN()
         try:
@@ -48,14 +49,17 @@ class ModelWrapper(object):
 
         # load pre-trained model
         self.model = SSR_net(self.img_size, self.stage_num, self.lambda_local, self.lambda_d)()
-        self.model.load_weights(path)
+        self.model_path = path
+        self.detector_path = detector_path
+        self.model.load_weights(self.model_path)
 
         self.graph = tf.get_default_graph()
 
-        logger.info('Loaded model')
+        logger.info('Loaded model')        
 
     def predict(self, x):
         input_img = x
+        face_cascade = cv2.CascadeClassifier(self.detector_path)
         # python version
         pyFlag = ''
         if len(sys.argv) < 3:
@@ -68,17 +72,17 @@ class ModelWrapper(object):
 
         detected = ''  # make this not local variable
         ad = 0.4
-
-        if pyFlag == '3':
-            input_img = cv2.cvtColor(input_img, cv2.COLOR_BGR2RGB)
-
         img_h, img_w, _ = np.shape(input_img)
         input_img = cv2.resize(input_img, (1024, int(1024 * img_h / img_w)))
         img_h, img_w, _ = np.shape(input_img)
 
-        detected = self.detector.detect_faces(input_img)
+        gray_img = cv2.cvtColor(input_img, cv2.COLOR_BGR2GRAY)
+        detected = face_cascade.detectMultiScale(gray_img, 1.1)
+        dd=[]
+        for i in range(len(detected)):
+            detected.append({'box':detected[i]})
+        detected=dd
         faces = np.empty((len(detected), self.img_size, self.img_size, 3))
-
         for i, d in enumerate(detected):
             if d['confidence'] > 0.95:
                 x1, y1, w, h = d['box']
