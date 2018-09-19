@@ -13,7 +13,9 @@ API_VERSION = '0.1'
 
 # default model
 MODELNAME = 'ssrnet_3_3_3_64_1.0_1.0.h5'
+FACE_NAME = 'lbpcascade_frontalface_improved.xml'
 DEFAULT_MODEL_PATH = 'assets/{}'.format(MODELNAME)
+DEFAULT_DETECTOR_PATH = 'assets/{}'.format(FACE_NAME)
 MODEL_LICENSE = 'MIT'
 
 MODEL_META_DATA = {
