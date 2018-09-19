@@ -1,6 +1,6 @@
 
 import logging
-from config import DEFAULT_MODEL_PATH
+from config import DEFAULT_MODEL_PATH, DEFAULT_DETECTOR_PATH
 import os
 import io
 import cv2
