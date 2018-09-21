@@ -5,6 +5,7 @@ from config import MODEL_META_DATA
 from core.backend import ModelWrapper, read_still_image
 import numpy as np
 
+
 api = Namespace('model', description='Model information and inference operations')
 
 model_meta = api.model('ModelMetadata', {

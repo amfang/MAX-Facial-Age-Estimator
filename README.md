@@ -20,8 +20,8 @@ system.
 
 ## References:
 
-* T.-Y. Yang, Y.-H. Huang, Y.-Y. Lin, P.-C. Hsiu, and Y.-Y. Chuang. SSR-Net: A Compact Soft Stagewise Regression Network for Age Estimation. IJCAI 2018.
-
+* _T.-Y. Yang, Y.-H. Huang, Y.-Y. Lin, P.-C. Hsiu, and Y.-Y. Chuang._ ["SSR-Net: A Compact Soft Stagewise Regression Network for Age Estimation"](https://www.ijcai.org/proceedings/2018/0150.pdf), IJCAI, 2018.
+* [SSR-Net Github Repository](https://github.com/shamangary/SSR-Net)
 
 ## Licenses
 
@@ -35,12 +35,13 @@ system.
 ## Pre-requisites:
 
 * `docker`: The [Docker](https://www.docker.com/) command-line interface. Follow the [installation instructions](https://docs.docker.com/install/) for your system.
-* The minimum recommended resources for this model is 2GB Memory and 1 CPUs.
+* The minimum recommended resources for this model is 2GB Memory and 1 CPU.
 
 # Steps
 
 1. [Deploy from Docker Hub](#deploy-from-docker-hub)
-2. [Run Locally](#run-locally)
+2. [Deploy on Kubernetes](#deploy-on-kubernetes)
+3. [Run Locally](#run-locally)
 
 ## Deploy from Docker Hub
 
@@ -52,6 +53,18 @@ $ docker run -it -p 5000:5000 codait/max-facial-age-estimator
 
 This will pull a pre-built image from Docker Hub (or use an existing image if already cached locally) and run it.
 If you'd rather checkout and build the model locally you can follow the [run locally](#run-locally) steps below.
+
+## Deploy on Kubernetes
+
+You can also deploy the model on Kubernetes using the latest docker image on Docker Hub.
+
+On your Kubernetes cluster, run the following commands:
+
+```
+$ kubectl apply -f https://github.com/IBM/MAX-Facial-Age-Estimator/raw/master/max-facial-age-estimator.yaml
+```
+
+The model will be available internally at port `5000`, but can also be accessed externally through the `NodePort`.
 
 ## Run Locally
 
