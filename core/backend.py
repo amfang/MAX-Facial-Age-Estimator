@@ -32,7 +32,7 @@ class ModelWrapper(object):
     """Model wrapper for SavedModel format"""
     def __init__(self, path=DEFAULT_MODEL_PATH, detector_path=DEFAULT_DETECTOR_PATH):
         logger.info('Loading model from: {}...'.format(path))
-        logger.info('Loading face detector from: {}...'.format(path))
+        logger.info('Loading face detector from: {}...'.format(detector_path))
         
         # for face detection
         self.detector = MTCNN()
