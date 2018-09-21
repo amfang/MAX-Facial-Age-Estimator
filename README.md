@@ -35,7 +35,7 @@ system.
 ## Pre-requisites:
 
 * `docker`: The [Docker](https://www.docker.com/) command-line interface. Follow the [installation instructions](https://docs.docker.com/install/) for your system.
-* The minimum recommended resources for this model is [Necessary GB] Memory and [Necessary CPUs] CPUs.
+* The minimum recommended resources for this model is 2GB Memory and 1 CPUs.
 
 # Steps
 
@@ -97,6 +97,29 @@ $ docker run -it -p 5000:5000 max-facial-age-estimator
 ### 3. Use the Model
 The API server automatically generates an interactive Swagger documentation page. Go to http://localhost:5000 to load it. From there you can explore the API and also create test requests. Use the model/predict endpoint to load a test image (you can use one of the test images from the assets folder) and get predicted labels for the image from the API
 
+Use the `model/predict` endpoint to load a test image (you can use one of the test images from the `assets` folder) and get predictions for the image from the API.
+![Swagger UI Screenshot](docs/swagger-screenshot.png)
+You can also test it on the command line, for example:
+```
+$ curl -F "image=@assets/tom_cruise.jpg" -XPOST http://localhost:5000/model/predict
+```
+You should see a JSON response like that below:
+```
+{
+    "status": "ok",
+    "predictions": [
+        {
+            "age_estimation": 48,
+            "face_box": [
+                303,
+                174,
+                379,
+                515
+            ]
+        }
+    ]
+}
+```
 
 ### 4. Development
 

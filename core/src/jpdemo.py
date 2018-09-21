@@ -19,7 +19,9 @@ from core.src.SSRNET_model import SSR_net
 
 #from moviepy.editor import *
 
+#weight path
 weight_file = "./assets/ssrnet_3_3_3_64_1.0_1.0.h5"
+
 
 model = SSR_net(64, [3, 3, 3], 1, 1)()
 model.load_weights(weight_file)
