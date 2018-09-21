@@ -16,12 +16,12 @@ MODEL_NAME = 'ssrnet_3_3_3_64_1.0_1.0.h5'
 FACE_NAME = 'lbpcascade_frontalface_improved.xml'
 DEFAULT_MODEL_PATH = 'assets/{}'.format(MODEL_NAME)
 DEFAULT_DETECTOR_PATH = 'assets/{}'.format(FACE_NAME)
-MODEL_LICENSE = 'MODEL LICENSE'
+MODEL_LICENSE = 'MIT'
 
 MODEL_META_DATA = {
-    'id': '{} MODEL ID'.format(MODEL_NAME.lower()),
-    'name': '{} MODEL NAME'.format(MODEL_NAME),
-    'description': '{} MODEL DESCRIPTION'.format(MODEL_NAME),
+    'id': 'max-facial-age-estimator',
+    'name': 'MAX Facial Age Estimator',
+    'description': 'Facial Age recognition model',
     'type': 'TYPE',
     'license': '{}'.format(MODEL_LICENSE)
 }

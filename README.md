@@ -1,10 +1,8 @@
-# IBM Code Model Asset Exchange:Age Estimation with SSR-Net
+# IBM Code Model Asset Exchange: Facial Age Estimator
 
-The SSR-Net gives Age Estimation from giving an image or video. The model first detects human face, then automatically generate feature vector to represent every detected human face.  The model takes a coarse-to-fine strategy to perform multi-class classification and regression for age estimatation. The output of the model provides gender, age, and also bounding boxes of a given image or video. 
+This repository contains code to instantiate and deploy a facial age estimation model. The model detects faces in an image, extracts facial features for each face detected and finally predicts the age of each face. The model uses a coarse-to-fine strategy to perform multi-class classification and regression for age estimation. The input to the model is an image and the output is a list of estimated ages and bounding box coordinates of each face detected in the image. The format of the bounding box coordinates is `[xmin, ymin, width, height]`.
 
-The model is based on the SSR-Net model. The model files are hosted on IBM Cloud Object Storage. The code in this repository deploys the model as a web service in a Docker container. This repository was developed as part of the IBM Code Model Asset Exchange.
-
-## Model Metadata
+The model is based on the [SSR-Net model](https://github.com/shamangary/SSR-Net). The model files are hosted on [IBM Cloud Object Storage](http://max-assets.s3-api.us-geo.objectstorage.softlayer.net/facial-age-estimator.tar.gz). The code in this repository deploys the model as a web service in a Docker container. This repository was developed as part of the [IBM Code Model Asset Exchange](https://developer.ibm.com/code/exchanges/models/).
 
 ## Model Metadata
 | Domain | Application | Industry  | Framework | Training Data | Input Data Format |
@@ -28,7 +26,7 @@ system.
 | Component | License | Link  |
 | ------------- | --------  | -------- |
 | This repository | [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0) | [LICENSE](LICENSE) |
-| Model Weights | [MIT](https://opensource.org/licenses/MIT) | [LICENSE](https://https://github.com/shamangary/SSR-Net/blob/master/LICENSE) |
+| Model Weights | [MIT](https://opensource.org/licenses/MIT) | [LICENSE](https://github.com/shamangary/SSR-Net/blob/master/LICENSE) |
 | Model Code (3rd party) | [MIT](https://opensource.org/licenses/MIT) | [LICENSE](https://github.com/shamangary/SSR-Net/blob/master/LICENSE) |
 | Test assets | Various | [Asset README](assets/README.md) |
 

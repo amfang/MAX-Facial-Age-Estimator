@@ -3,7 +3,7 @@ from werkzeug.datastructures import FileStorage
 
 from config import MODEL_META_DATA
 from core.backend import ModelWrapper, read_still_image
-import numpy as np
+import logging
 
 
 api = Namespace('model', description='Model information and inference operations')
@@ -27,14 +27,14 @@ class Model(Resource):
 
 # Creating a JSON response model: https://flask-restplus.readthedocs.io/en/stable/marshalling.html#the-api-model-factory
 label_prediction = api.model('LabelPrediction', {
-    'age_estimation': fields.List(fields.Float(required=True)),
-    'face_box': fields.List(fields.Float(required=True))
+    'age_estimation': fields.List(fields.Float(required=True, description='Estimated age for the face')),
+    'face_box': fields.List(fields.Float(required=True, description='Bounding box coordinates for the face'))
 })
 
 
 predict_response = api.model('ModelPredictResponse', {
     'status': fields.String(required=True, description='Response status message'),
-    'predictions': fields.List(fields.Nested(label_prediction), description='Age estimation and face bounding box')
+    'predictions': fields.List(fields.Nested(label_prediction), description='Predicted age and bounding box for each detected face')
 })
 
 
@@ -66,6 +66,6 @@ class Predict(Resource):
             label_preds.append({'age_estimation':res[0]['age'],'face_box':res[0]['box']})
         result['predictions'] = label_preds
         result['status'] = 'ok'
-        print(label_preds)
+        logging.info(label_preds)
 
         return result

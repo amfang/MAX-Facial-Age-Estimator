@@ -55,11 +55,13 @@ class ModelWrapper(object):
 
         self.graph = tf.get_default_graph()
 
+        self.face_cascade = cv2.CascadeClassifier(detector_path)
+
         logger.info('Loaded model')
 
     def predict(self, x):
         input_img = x
-        face_cascade = cv2.CascadeClassifier(self.detector_path)
+
         # python version
         pyFlag = ''
         if len(sys.argv) < 3:
@@ -80,7 +82,7 @@ class ModelWrapper(object):
 
         # for webcam
         gray_img = cv2.cvtColor(input_img, cv2.COLOR_BGR2GRAY)
-        detected = face_cascade.detectMultiScale(gray_img, 1.1)
+        detected = self.face_cascade.detectMultiScale(gray_img, 1.1)
         dd=[]
         for i in range(len(detected)):
             dd.append({'box':detected[i]})
