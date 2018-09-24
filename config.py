@@ -12,14 +12,16 @@ API_DESC = 'An API for serving models'
 API_VERSION = '0.1'
 
 # default model
-MODELNAME = 'ssrnet_3_3_3_64_1.0_1.0.h5'
-DEFAULT_MODEL_PATH = 'assets/{}'.format(MODELNAME)
+MODEL_NAME = 'ssrnet_3_3_3_64_1.0_1.0.h5'
+FACE_NAME = 'lbpcascade_frontalface_improved.xml'
+DEFAULT_MODEL_PATH = 'assets/{}'.format(MODEL_NAME)
+DEFAULT_DETECTOR_PATH = 'assets/{}'.format(FACE_NAME)
 MODEL_LICENSE = 'MIT'
 
 MODEL_META_DATA = {
-    'id': 'ssrnet',
-    'name': 'SSR-Net Facial Age Estimator Model',
-    'description': 'SSR-Net Facial Recognition and Age Prediction model; trained using Keras on the IMDB-WIKI dataset',
-    'type': 'facial-recognition',
+    'id': 'max-facial-age-estimator',
+    'name': 'MAX Facial Age Estimator',
+    'description': 'Facial Age recognition model',
+    'type': 'TYPE',
     'license': '{}'.format(MODEL_LICENSE)
 }

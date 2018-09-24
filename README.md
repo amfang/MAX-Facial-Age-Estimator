@@ -7,7 +7,14 @@ The model is based on the [SSR-Net model](https://github.com/shamangary/SSR-Net)
 ## Model Metadata
 | Domain | Application | Industry  | Framework | Training Data | Input Data Format |
 | ------------- | --------  | -------- | --------- | --------- | -------------- |
-| Vision | Facial Recognition | General | Keras & TensorFlow | [IMDB-WIKI Dataset](https://data.vision.ee.ethz.ch/cvl/rrothe/imdb-wiki/) | Image (PNG/JPG) |
+| Vision | Age Estimation | General | Keras & TensorFlow | [IMDB-WIKI Dataset](https://data.vision.ee.ethz.ch/cvl/rrothe/imdb-wiki/) | Image(PNG/JPG) |
+
+
+## Prerequisites:
+
+* You will need Docker installed. Follow the [installation instructions](https://docs.docker.com/install/) for your
+system.
+* The minimum recommended resources for this model is 2GB Memory and 1 CPU.
 
 ## References:
 
@@ -86,7 +93,9 @@ To build the docker image locally, run:
 $ docker build -t max-facial-age-estimator .
 ```
 
-_Note_ that currently this docker image is CPU only (we will add support for GPU images later).
+All required model assets will be downloaded during the build process. _Note_ that currently this docker image is CPU only (we will add support for GPU images later).
+
+
 
 ### 2. Deploy the Model
 
@@ -97,21 +106,15 @@ $ docker run -it -p 5000:5000 max-facial-age-estimator
 ```
 
 ### 3. Use the Model
-
-The API server automatically generates an interactive Swagger documentation page. Go to `http://localhost:5000` to load it. From there you can explore the API and also create test requests.
+The API server automatically generates an interactive Swagger documentation page. Go to http://localhost:5000 to load it. From there you can explore the API and also create test requests. Use the model/predict endpoint to load a test image (you can use one of the test images from the assets folder) and get predicted labels for the image from the API
 
 Use the `model/predict` endpoint to load a test image (you can use one of the test images from the `assets` folder) and get predictions for the image from the API.
-
 ![Swagger UI Screenshot](docs/swagger-screenshot.png)
-
 You can also test it on the command line, for example:
-
 ```
 $ curl -F "image=@assets/tom_cruise.jpg" -XPOST http://localhost:5000/model/predict
 ```
-
 You should see a JSON response like that below:
-
 ```
 {
     "status": "ok",
